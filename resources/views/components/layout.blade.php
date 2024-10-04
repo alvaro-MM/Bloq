@@ -6,17 +6,17 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>{{ $metaTitle ?? 'Default Title' }}</title>
-    <meta name="description" content="{{$metadescription}}"  >
+    <meta name="description" content="{{$metadescription}}">
 
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    {{ $slot }}
-    @include('partials.navigation')
-    @isset($sidebar)
-        <div id="sidebar">
-            <h3>Sidebar</h3>
-        </div>
-    @endisset
+{{ $slot }}
+<x-partials.navigation/>
+@isset($sidebar)
+    <div id="sidebar">
+        <h3>Sidebar</h3>
+    </div>
+@endisset
 
 </body>
 </html>

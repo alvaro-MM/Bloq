@@ -1,16 +1,6 @@
-<!DOCTYPE html >
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Contact</title>
-
-</head>
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
-<h1>Contacto</h1>
-    @include('partials.navigation');
-
-</body>
-</html>
-
+<x-layout meta-title="Contacto" metadescription="Descripcion de la pagina de contacto">
+    <h1>Inicio</h1>
+    <x-slot:sidebar>
+        <p>Home Sidebar</p>
+    </x-slot:sidebar>
+</x-layout>

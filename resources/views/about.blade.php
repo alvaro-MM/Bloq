@@ -7,7 +7,7 @@
     <title>Acerca de nosotros</title>
 
 </head>
-<body>
+<body class="font-sans antialiased dark:bg-black dark:text-white/50">
 <h1>Acerca de nosotros</h1>
 @include('partials.navigation');
 

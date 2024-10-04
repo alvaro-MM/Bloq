@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Blog</title>
 
 </head>
-<body>
+<body class="font-sans antialiased dark:bg-black dark:text-white/50">
 <h1>Blog</h1>
 @include('partials.navigation');
 

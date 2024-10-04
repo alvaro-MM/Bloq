@@ -3,18 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Inicio</title>
 
     </head>
     <body>
-    <h1>Inicio</h1>
-    <ul>
-        <li><a href= {{ route('home') }} >Home</a></li>
-        <li><a href= {{ route('blog') }} > Blog </a></li>
-        <li><a href= {{ route('about') }}>About us</a></li>
-        <li><a href= {{ route('contact') }}>Contact</a></li>
-    </ul>
+        <h1>Inicio</h1>
+        @include('partials.navigation');
 
     </body>
 </html>

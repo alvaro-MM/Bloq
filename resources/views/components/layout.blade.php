@@ -14,6 +14,7 @@
 <x-partials.navigation/>
 @isset($sidebar)
     <div id="sidebar">
+
         <h3>Sidebar</h3>
     </div>
 @endisset

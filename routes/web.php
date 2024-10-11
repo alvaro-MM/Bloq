@@ -10,9 +10,23 @@ Route::view('/', 'welcome')->name('home');
 
 Route::view('/contacto', 'contact')->name('contact');
 
-Route::get('/blog', PostController::class,'index')->name('blog');
+Route::get('/post', [PostController::class, 'index'])->name('post.index');
 
-Route::view('nosotros', 'about')->name('about');
+Route::view('/nosotros', 'about')->name('about');
+
+Route::get('post/create', [PostController::class,'create'])->name('post.create');
+
+Route::get('post/{post}', [PostController::class,'show'])->name('post.show');
+
+
+Route::post('post/store', [PostController::class,'store'])->name('post.store');
+
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

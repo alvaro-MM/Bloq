@@ -13,18 +13,18 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('Post.index', compact('posts'));
+        return view('Posts.index', compact('posts'));
     }
 
     public function show(Post $post)
     {
-        return view('Post.show', compact('post'));
+        return view('Posts.show', compact('post'));
     }
 
     public function create()
     {
 
-        return view('Post.create');
+        return view('Posts.create');
     }
 
     public function store(Request $request)
@@ -37,8 +37,21 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
-        session()->flash('status', 'Post created successfully!');
+        session()->flash('status', 'Posts created successfully!');
         //return redirect()->route('posts.index');
         return to_route('post.index');
+    }
+
+    public function edit(Post $post){
+
+        return view('Posts.edit', compact('post'));
+    }
+    public function update(Request $request, Post $post)
+    {
+        $request->validate([
+            'title' => 'required|min:5',
+            'body' => 'required',
+        ]);
+
     }
 }

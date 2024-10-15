@@ -43,4 +43,12 @@ class PostController extends Controller
         return to_route('post.show', $post->id)
             ->with('status', 'Post updated successfully!');
     }
+
+    public function destroy (Post $post)
+    {
+        $post->delete();
+        return to_route('post.index')->with('status', 'Post deleted successfully!');
+    }
+
+
 }

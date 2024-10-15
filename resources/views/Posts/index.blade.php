@@ -9,14 +9,19 @@
 
     @foreach($posts as $post)
         <div style="display: flex; align-items: baseline">
+            <h1><a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></h1>
+
             <h2>
-                <a href="{{ route('post.show', $post->id) }}">{{ $post->title }}    </a>
-                <h6><a href="{{ route('post.edit', $post->id) }}">  Edit Post</a></h6>
+                <br/><br/>
+                <a href="{{ route('post.edit', $post->id) }}"> Edit Post</a>
+                <form action="{{route('post.destroy', $post)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
             </h2>
+
         </div>
-
-
-
 
     @endforeach
 

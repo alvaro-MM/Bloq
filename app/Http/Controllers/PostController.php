@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use function Laravel\Prompts\alert;
-
 
 class PostController extends Controller
 {
@@ -24,34 +23,24 @@ class PostController extends Controller
     public function create()
     {
 
-        return view('Posts.create');
+        return view('Posts.create', ['post' => new Post()]);
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:5',
-            'body' => 'required',
-        ]);
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
-        session()->flash('status', 'Posts created successfully!');
-        //return redirect()->route('posts.index');
-        return to_route('post.index');
+        Post::create($request->validated());
+        return to_route('post.index')
+            ->with('status', 'Posts created successfully!');
     }
 
     public function edit(Post $post){
 
         return view('Posts.edit', compact('post'));
     }
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required|min:5',
-            'body' => 'required',
-        ]);
-
+        $post->update($request->validated());
+        return to_route('post.show', $post->id)
+            ->with('status', 'Post updated successfully!');
     }
 }

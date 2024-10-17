@@ -1,6 +1,7 @@
 <x-layout meta-title="Inicio" metadescription="Descripcion de la pagina de inicio">
-    <h1>Inicio</h1>
-    <x-slot:sidebar>
-        <p>Home Sidebar</p>
-    </x-slot:sidebar>
+    <div class="mx-auto mt-4 max-w-6xl">
+        <h1 class="mt-4 mb-8 text-center font-serif text-4xl font-extrabold text-sky-600 md:text-5xl">
+            Home
+        </h1>
+    </div>
 </x-layout>

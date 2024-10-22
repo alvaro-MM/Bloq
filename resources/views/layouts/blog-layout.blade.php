@@ -3,19 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <!-- Use the null-coalescing operator to avoid undefined variable errors -->
-    <title>{{ $metaTitle ?? 'Default Title' }}</title>
-    <meta name="description" content="{{ $metadescription ?? 'Default description' }}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ $metaTitle }}</title>
+    <meta name="description" content="{{ $metaDescription ?? 'Default description' }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="_flex h-screen flex-col bg-slate-100 selection:bg-sky-600 selection:text-sky-50 dark:bg-slate-950 text-white">
-<x-partials.navigation/>
+<body class="flex h-screen flex-col bg-slate-100 selection:bg-sky-600 selection:text-sky-50 dark:bg-slate-950">
+@include('layouts.blog-navigation')
 
 @session('status')
-<div>
-    {{$value}}
+<div class="bg-green-600 p-4 text-xl text-green-50 dark:bg-green-800">
+    {{ $value }}
 </div>
 @endsession
 
@@ -100,8 +98,6 @@
         </div>
     </div>
 </footer>
-
-
 
 </body>
 </html>

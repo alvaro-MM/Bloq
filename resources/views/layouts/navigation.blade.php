@@ -36,7 +36,7 @@
                     stroke-linejoin="round"
                     d="M6 18L18 6M6 6l12 12"
                 ></path>
-            </svg>
+            </svg>movile
         </button>
         <a
             class="hidden text-sky-500 duration-200 hover:rotate-6 md:block"

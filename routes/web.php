@@ -16,7 +16,7 @@ Route::resource('bloq', PostController::class)
 
 Route::view('/nosotros', 'about')->name('about');
 
-
+Route::get('/myPost', [PostController::class, 'show2'])->name('myPost');
 
 
 

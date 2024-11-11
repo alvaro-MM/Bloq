@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use function Pest\Laravel\get;
 
 class PostController extends Controller
 {
@@ -14,7 +15,8 @@ class PostController extends Controller
     }
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::where('published_at', '<=', now())->get();
+
 
         return view('Posts.index', compact('posts'));
     }
@@ -26,14 +28,16 @@ class PostController extends Controller
 
     public function create()
     {
+        $post = new Post();
+        return view('Posts.create', ['post' => $post]);
 
-        return view('Posts.create', ['post' => new Post()]);
     }
 
     public function store(StorePostRequest $request)
     {
-        Post::create($request->validated());
-        return to_route('post.index')
+
+        auth()->user()->posts()->create($request->validated());
+        return to_route('myPost')
             ->with('status', 'Posts created successfully!');
     }
 
@@ -54,5 +58,12 @@ class PostController extends Controller
         return to_route('post.index')->with('status', 'Post deleted successfully!');
     }
 
+
+    public function show2()
+    {
+        $user = auth()->user();
+        $posts = Post::where('user_id', $user->id )->get();
+        return view('myPostPublished', compact('posts'));
+    }
 
 }

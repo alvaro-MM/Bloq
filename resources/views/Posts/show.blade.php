@@ -14,7 +14,7 @@
                 class="flex items-center justify-center space-x-10"
             >
                 <a
-                    class="rounded-full bg-sky-600 p-4 text-sky-100 shadow-lg hover:bg-sky-700 active:bg-sky-800 text-white"
+                    class="rounded-full bg-sky-600 p-4  shadow-lg hover:bg-sky-700 active:bg-sky-800 text-white"
                     href="{{ route('post.edit', $post) }}"
                 >
                     <svg

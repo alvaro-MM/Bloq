@@ -87,27 +87,42 @@
             </a>
             <div class="ml-8 hidden space-x-8 md:flex">
                 <a
-                    class="px-3 py-2 {{request()->routeIs('home')?'text-skye-50':'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500'}}" href="/">
+                    class="px-3 py-2 {{request()->routeIs('home')?'text-sky-50':'text-slate-600'}} transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500"
+
+                    href="/">
                     Home </a>
                 <a
-                    class="px-3 py-2 {{request()->routeIs('post.index')?'text-skye-50':'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500'}}" href="{{route('post.index')}}"
+                    class="px-3 py-2 {{request()->routeIs('post.index')?'text-sky-50':'text-slate-600'}} transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500"
+
+                    href="{{route('post.index')}}"
                 >
                     Blog
                 </a>
 
                 <a
-                    class="px-3 py-2 {{request()->routeIs('about')?'text-skye-50':'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500'}}"
+                    class="px-3 py-2 {{request()->routeIs('about')?'text-sky-50':'text-slate-600'}} transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500"
+
                     href="{{route('about')}}"
                 >
                     About
                 </a>
 
                 <a
-                    class="px-3 py-2 {{request()->routeIs('contact')?'text-skye-50':'text-slate-600 transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500'}}"
+                    class="px-3 py-2 {{request()->routeIs('contact')?'text-sky-50':'text-slate-600'}} transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500"
+
                     href="{{route('contact')}}"
                 >
                     Contact
                 </a>
+                @auth()
+                <a
+                    class="px-3 py-2 {{request()->routeIs('myPost')?'text-sky-50':'text-slate-600'}} transition-colors hover:text-sky-500 dark:text-slate-400 dark:hover:text-sky-500"
+
+                    href="{{route('myPost')}}"
+                >
+                    My Posts
+                </a>
+                @endauth
             </div>
 
 
@@ -117,7 +132,7 @@
             <div class="relative pt-1">
                 <button
                     id="toggle-theme-menu"
-                    class="rounded-full text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1 focus:ring-offset-transparent dark:text-slate-400 dark:hover:text-sky-500 dark:focus:ring-slate-700"
+                    class="rounded-full mt-1 mr-4 text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1 focus:ring-offset-transparent dark:text-slate-400 dark:hover:text-sky-500 dark:focus:ring-slate-700"
                 >
                     <svg
                         id="light-icon"
@@ -202,15 +217,15 @@
                             stroke="currentColor"
                             stroke-width="1.5"
 
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
                         >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-                        ></path>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                            ></path>
                         </svg>
                         <span>Dark</span>
                     </button>
@@ -237,15 +252,74 @@
                     </button>
                 </div>
             </div>
-            <button
-                class="ml-4 rounded-full text-slate-500 transition-colors hover:text-sky-500 focus:ring-2 focus:ring-slate-200 focus:ring-offset-1"
-            >
-                <img
-                    class="h-6 w-6 rounded-full"
-                    src="https://ui-avatars.com/api?name=Jorge+Garcia"
-                    alt="Jorge García"
-                />
-            </button>
+            @guest
+                <div class="flex space-x-4">
+
+                    <!-- First Dropdown -->
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                <div class="ms-1">
+                                    <img class="h-6 w-6 rounded-full" src="https://avatars.dicebear.com/api/initials/guest.svg"
+                                         alt="default"/>
+                                </div>
+
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Log in') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Register') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+
+                </div>
+
+            @endguest
+            @auth
+                <div class="flex space-x-4">
+
+                    <!-- First Dropdown -->
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                <div class="ms-1">
+                                    <img class="h-6 w-6 rounded-full" src="https://ui-avatars.com/api?name={{ urlencode(Auth::user()->name) }}+{{ urlencode(Auth::user()->surname) }}"
+                                         alt="default"/>
+                                </div>
+
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')"
+                                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
+
+                </div>
+            @endauth
+
         </div>
     </div>
     <div
@@ -278,3 +352,4 @@
         </a>
     </div>
 </header>
+

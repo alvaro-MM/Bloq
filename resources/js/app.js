@@ -91,4 +91,11 @@ if(themeMenu){
             .getElementById("close-menu-icon")
             .classList.toggle("hidden");
     });
+
+    document
+        .getElementById("toggle-session-menu")
+        .addEventListener("click",() => {
+            const sessionMenu = document.getElementById("session-menu");
+            sessionMenu.classList.toggle("hidden");
+        });
 }

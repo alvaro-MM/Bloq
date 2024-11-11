@@ -14,7 +14,9 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5',
-            'body' => 'required'
+            'body' => 'required',
+            'published_at' => 'nullable|date'
+
         ];
     }
 }

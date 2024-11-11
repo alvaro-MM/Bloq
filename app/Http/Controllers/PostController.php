@@ -42,7 +42,6 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
-
         return view('Posts.edit', compact('post'));
     }
     public function update(UpdatePostRequest $request, Post $post)

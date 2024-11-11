@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 
@@ -18,9 +19,13 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
         $users = User::all();
 
-        $users->each(function ($user) {
+        $categories = Category::factory(10)->create();
+
+        $users->each(function ($user) use ($categories) {
             $user->posts()->saveMany(
-                Post::factory(10)->make()
+                Post::factory(10)->make()->each(function ($post) use ($categories) {
+                    $post->category_id = $categories->random()->id;
+                })
             );
         });
     }

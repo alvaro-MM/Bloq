@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,9 @@ Route::view('/nosotros', 'about')->name('about');
 
 Route::get('/myPost', [PostController::class, 'show2'])->name('myPost');
 
-
+Route::get('/categorias', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('category.show');
+Route::delete('/categorias/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

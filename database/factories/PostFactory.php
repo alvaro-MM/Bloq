@@ -21,6 +21,7 @@ class PostFactory extends Factory
             'body'=>$this->faker->paragraph(),
             'published_at'=> random_int(0,2) ? $this->faker->dateTimeBetween("-1 month","+1 month") : null,
 
+
         ];
     }
 }
